@@ -25,6 +25,7 @@
       box-shadow:0 10px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.35);cursor:pointer;
     }
     .install-btn.hidden{display:none!important}
+    .open-fallback.hide{display:none!important}
     .open-fallback{
       position:fixed;left:12px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:2147483646;
       background:rgba(8,23,42,.78);color:#cfe8ff;border:1px solid rgba(113,200,255,.25);
@@ -78,6 +79,11 @@
       var helpModal = document.getElementById('helpModal');
       var helpSteps = document.getElementById('helpSteps');
       var openFallback = document.getElementById('openFallback');
+      window.addEventListener('message', function(event){
+        if(event.data && event.data.type === 'gvg-frotas-login' && event.data.logged){
+          openFallback.classList.add('hide');
+        }
+      });
       var helpOpen = document.getElementById('helpOpen');
       frame.src = APP_URL;
       openFallback.href = APP_URL;
