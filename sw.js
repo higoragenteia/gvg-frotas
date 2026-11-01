@@ -1,5 +1,5 @@
 /* GVG & ARTEFAL — PWA Frotas */
-const CACHE = 'gvg-frotas-pwa-v1';
+const CACHE = 'gvg-frotas-pwa-v2';
 const SHELL = [
   './',
   './index.html',
