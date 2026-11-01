@@ -1,5 +1,5 @@
 /* GVG & ARTEFAL — PWA Frotas */
-const CACHE = 'gvg-frotas-pwa-v3';
+const CACHE = 'gvg-frotas-pwa-v4';
 const SHELL = [
   './',
   './index.html',
@@ -36,7 +36,7 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-store' })
         .then(response => {
           const copy = response.clone();
           caches.open(CACHE).then(cache => cache.put(request, copy)).catch(() => {});

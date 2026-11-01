@@ -54,7 +54,7 @@
     <iframe id="appFrame" title="GVG &amp; ARTEFAL — Controle de Frota" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
 
-  <a id="openFallback" class="open-fallback" href="#" target="_blank" rel="noopener">Problemas para abrir? Toque aqui</a>
+  <a id="openFallback" class="open-fallback hide" href="#" target="_blank" rel="noopener">Problemas para abrir? Toque aqui</a>
   <button id="installBtn" class="install-btn" type="button">📲 Instalar</button>
 
   <div id="helpModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
@@ -79,8 +79,11 @@
       var helpModal = document.getElementById('helpModal');
       var helpSteps = document.getElementById('helpSteps');
       var openFallback = document.getElementById('openFallback');
+      var fallbackTimer = setTimeout(function(){ openFallback.classList.remove('hide'); }, 15000);
+      frame.addEventListener('load', function(){ clearTimeout(fallbackTimer); openFallback.classList.add('hide'); });
       window.addEventListener('message', function(event){
         if(event.data && event.data.type === 'gvg-frotas-login' && event.data.logged){
+          clearTimeout(fallbackTimer);
           openFallback.classList.add('hide');
         }
       });
